@@ -10,6 +10,7 @@ import java.awt.Color;
 public class DVD extends AdvancedRobot
 {
 	int colorIndex = 0;
+	int backTime = 0;
 
 	/**
 	 * run: DVD's default behavior
@@ -20,9 +21,12 @@ public class DVD extends AdvancedRobot
 		
 		// Robot main loop
 		while(true) {
-			setAhead(40000);
-			setTurnGunLeft(25);
+			if(backTime <= 0) {
+				setAhead(40000);
+			}
+			setTurnGunLeft(20);
 			execute();
+			backTime--;
 		}
 	}
 
@@ -47,7 +51,9 @@ public class DVD extends AdvancedRobot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		cycleRobotColor();
-		setTurnLeft(45);
+		setBack(150);
+		setTurnLeft(180);
+		backTime = 25;
 	}
 
 	public void onHitRobot(HitRobotEvent e) {
