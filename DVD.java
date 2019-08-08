@@ -35,7 +35,14 @@ public class DVD extends AdvancedRobot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// Replace the next line with any behavior you would like
-		setFire(2);
+		if(e.getDistance() < 300){
+			if(getEnergy() < 50){
+				setFire(1);
+			}
+			else {
+				setFire(2);
+			}
+		}
 	}
 
 	/**
